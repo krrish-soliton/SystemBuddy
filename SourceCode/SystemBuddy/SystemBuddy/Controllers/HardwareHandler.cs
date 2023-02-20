@@ -46,12 +46,13 @@ namespace SystemBuddy
             timer.Start();
         }
 
+        public List<IHardware> Hardwares { get; } = new List<IHardware>();
+
         public CPU CPUInfo { get; private set; } = new CPU();
 
         public Memory MemInfo { get; private set; } = new Memory();
 
         public Dictionary<string, Storage> Storages { get; private set; } = new Dictionary<string, Storage>();
-
 
         public Timer timer = new Timer() { Interval = 1000 };
 

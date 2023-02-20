@@ -21,6 +21,8 @@ namespace SystemBuddyUI.ViewModel
 
         public string Name { get { return SensorData.Name; } }
 
+        public string ParentID { get { return SensorData.ParentID; } }
+
         internal SensorData SensorData { get; set; }
 
     }

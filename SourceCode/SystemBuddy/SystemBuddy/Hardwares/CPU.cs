@@ -41,19 +41,33 @@ namespace SystemBuddy
             Cores = cpu.CpuId.Length;
             Threads = cpu.CpuId[0].Length;
             Hardware = hardware;
+            Load.ParentID = "CPU - " + hardware.Name + " - Load";
             Load.Sensor = Hardware.Sensors.FirstOrDefault(i => i.Name == "CPU Total");
+            PackageTemperature.ParentID = "CPU - " + hardware.Name + " - Temperature";
             PackageTemperature.Sensor = Hardware.Sensors.FirstOrDefault(i => i.Name == "CPU Package");
             for (int i = 0; i < Cores; i++)
             {
                 ISensor sensor = Hardware.Sensors.FirstOrDefault(s => s.Name == "CPU Core #" + (i + 1));
                 string sensorID = sensor.Identifier.ToString();
-                if (!CoreTemperatures.ContainsKey(sensorID)) CoreTemperatures.Add(sensorID, new SensorData { Name = $"Core {i} Temp", UnitType = UnitType.TemperatureC, Identifier = sensor.Identifier.ToString() });
+                if (!CoreTemperatures.ContainsKey(sensorID)) CoreTemperatures.Add(sensorID, new SensorData
+                {
+                    ParentID = "CPU - " + hardware.Name + " - Temperature",
+                    Name = $"Core {i} Temp",
+                    UnitType = UnitType.TemperatureC,
+                    Identifier = sensor.Identifier.ToString()
+                });
                 CoreTemperatures[sensor.Identifier.ToString()].Sensor = sensor;
                 for (int j = 0; j < Threads; j++)
                 {
                     sensor = Hardware.Sensors.FirstOrDefault(s => s.Name == "CPU Core #" + (i + 1) + " Thread #" + (j + 1));
                     sensorID = sensor.Identifier.ToString();
-                    if (!CoreLoads.ContainsKey(sensorID)) CoreLoads.Add(sensorID, new SensorData { Name = $"Core {i} Thread {j}", UnitType = UnitType.Percentile, Identifier = sensor.Identifier.ToString() });
+                    if (!CoreLoads.ContainsKey(sensorID)) CoreLoads.Add(sensorID, new SensorData
+                    {
+                        ParentID = "CPU - " + hardware.Name + " - Load",
+                        Name = $"Core {i} Thread {j}",
+                        UnitType = UnitType.Percentile,
+                        Identifier = sensor.Identifier.ToString()
+                    });
                     CoreLoads[sensorID].Sensor = sensor;
                 }
             }

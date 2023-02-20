@@ -11,7 +11,7 @@ namespace SystemBuddy
 
         public IHardware Hardware { get; private set; }
 
-        public SensorData Size { get; } = new SensorData() { Name = "Memory", UnitType = UnitType.Custom, Suffix = " GB" };
+        public SensorData Size { get; } = new SensorData() { Name = "Memory", ParentID = "Memory", UnitType = UnitType.Custom, Suffix = " GB" };
 
         public string ID { get; private set; }
 

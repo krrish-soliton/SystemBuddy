@@ -28,6 +28,8 @@ namespace SystemBuddy
 
         public string Identifier { get; set; }
 
+        public string ParentID { get; set; }
+
         public string Name { get; set; }
 
         public float Total { get; set; }
@@ -74,7 +76,7 @@ namespace SystemBuddy
             if (type == UnitType.TemperatureC) return Math.Round(value, roundValue) + " °C";
             else if (type == UnitType.TemperatureK) return Math.Round(value, roundValue) + " °K";
             else if (type == UnitType.Data) return SizeSuffix(Convert.ToInt64(value));
-            else if (type == UnitType.DataPerSecond) return SizeSuffix(Convert.ToInt64(value))+"/s";
+            else if (type == UnitType.DataPerSecond) return SizeSuffix(Convert.ToInt64(value)) + "/s";
             else if (type == UnitType.Percentile)
             {
                 if (total > 0)

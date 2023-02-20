@@ -21,7 +21,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\Binaries\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>C:\VS-Scratch\$(SolutionName)\$(MSBuildProjectName)\$(Configuration)\obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>C:\VS-Scratch\$(SolutionName)\$(MSBuildProjectName)\$(Configuration)\obj\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +33,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\Binaries\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>C:\VS-Scratch\$(SolutionName)\$(MSBuildProjectName)\$(Configuration)\obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>C:\VS-Scratch\$(SolutionName)\$(MSBuildProjectName)\$(Configuration)\obj\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

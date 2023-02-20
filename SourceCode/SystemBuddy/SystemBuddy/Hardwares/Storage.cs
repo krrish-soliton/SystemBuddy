@@ -42,10 +42,7 @@ namespace SystemBuddy
 
         public void UpdateSensors()
         {
-            foreach (var sensor in Sensors)
-            {
-                sensor.Update();
-            }
+            foreach (var sensor in Sensors) sensor.Update();
         }
 
         public void Update(IHardware hardware)
@@ -54,6 +51,10 @@ namespace SystemBuddy
             {
                 Name = storage.Name;
                 Hardware = storage;
+                ReadRate.ParentID = "Storage - " + hardware.Name;
+                WriteRate.ParentID = "Storage - " + hardware.Name;
+                TotalActivity.ParentID = "Storage - " + hardware.Name;
+                Temperature.ParentID = "Storage - " + hardware.Name;
                 ReadRate.Sensor = hardware.Sensors.FirstOrDefault(i => i.Name == "Read Rate");
                 WriteRate.Sensor = hardware.Sensors.FirstOrDefault(i => i.Name == "Write Rate");
                 TotalActivity.Sensor = hardware.Sensors.FirstOrDefault(i => i.Name == "Total Activity");

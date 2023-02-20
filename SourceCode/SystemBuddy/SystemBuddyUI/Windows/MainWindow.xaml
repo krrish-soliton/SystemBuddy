@@ -11,6 +11,13 @@
     <Window.DataContext>
         <viewmodel:HardwareViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <CollectionViewSource x:Key="ListBoxItems" Source="{Binding Path=Sensors}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="ParentID" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -19,7 +26,29 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Sensors}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Source={StaticResource ListBoxItems}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Expander Padding="0" BorderThickness="0"  IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Gray" FontSize="22" VerticalAlignment="Bottom" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter/>
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListBox.GroupStyle>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
